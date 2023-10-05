@@ -5,7 +5,7 @@ from PIL import Image
 # https://stackoverflow.com/questions/65320842/python-pil-reduce-alpha-level-but-do-not-change-transparent-background
 
 
-def get_photos(directory_path="original", position="c", reshape_factor=8, transparent_factor=0.7):
+def get_photos(directory_path="original", position: str = "Float", reshape_factor: float = 8, transparent_factor: float = 0.6):
 	"""
 
 	:param directory_path: Directory name where the images are located
@@ -20,7 +20,7 @@ def get_photos(directory_path="original", position="c", reshape_factor=8, transp
 	images = [(os.path.abspath(directory_path)+"\\"+i) for i in images]
 	# images = [i.replace("\\", '/') for i in images]
 	for i in images:
-		if ".JPG" in image:
+		if ".JPG" in i:
 			image_list.append(str(i))
 		else:
 			watermark_loc = str(i)
@@ -29,7 +29,7 @@ def get_photos(directory_path="original", position="c", reshape_factor=8, transp
 	return None
 
 
-def add_watermark(image_path, watermark_path, position="c", reshape_factor=8, transparent_factor=0.7):
+def add_watermark(image_path, watermark_path, position, reshape_factor, transparent_factor):
 	"""
 	:param image_path: Path from the image to add watermark
 	:param watermark_path: Path from the watermark
@@ -82,9 +82,4 @@ def add_watermark(image_path, watermark_path, position="c", reshape_factor=8, tr
 	return None
 
 # MASTER FUNCTION TO LAUNCH
-# get_photos(directory_path="original", position="c", reshape_factor=8, transparent_factor=0.65)
-
-# TEST
-image = 'C:/Users/Rodrigo/Desktop/COURSERA/Watermark_picture/original/1.JPG'
-watermark = 'C:/Users/Rodrigo/Desktop/COURSERA/Watermark_picture/original/purple_watermark.png'
-add_watermark(image, watermark, position="c", reshape_factor=8, transparent_factor=0.7)
+get_photos(directory_path="original", position="ll", reshape_factor=4.5, transparent_factor=0.6)
