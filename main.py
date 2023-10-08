@@ -51,7 +51,7 @@ if photo is not None:
 	st.write("Image preview")
 
 
-	new_image = add_watermark(photo,watermark_path="/original/watermark_sign.png",position="c",reshape_factor=8,transparent_factor=0.5)
+	new_image = add_watermark(photo,watermark_path="/mount/src/watermark_picture/original/watermark_sign.png",position="c",reshape_factor=8,transparent_factor=0.5)
 	st.image(new_image)
 	buf = BytesIO()
 	new_image = new_image.convert('RGB')
