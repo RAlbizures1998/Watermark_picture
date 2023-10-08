@@ -93,7 +93,7 @@ except:
 	st.warning("Values not valid")
 if photo is not None and watermark is not None:
 	if st.button("Generate"):
-		new_image = add_watermark(photo,watermark_path=watermark,position=location,reshape_factor=reshape_factor,transparent_factor=transparent_factor,recolor=recolor,rotate=int(watermark_rotation),main_image_rotation=main_image_rotation)
+		new_image = add_watermark(photo,watermark_path=watermark,position=location,reshape_factor=reshape_factor,transparent_factor=transparent_factor,recolor=recolor,rotate=int(watermark_rotation),main_image_rotation=360-main_image_rotation)
 		st.image(new_image)
 		buf = BytesIO()
 		new_image = new_image.convert('RGB')
