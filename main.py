@@ -46,9 +46,14 @@ def add_watermark(image_path, watermark_path, position, reshape_factor, transpar
 
 st.title("UI test")
 photo = st.file_uploader("Insert picture")
-reshape_factor = int(st.text_area("Image reshape factor", 1))
-transparent_factor = int(st.text_area("Transparency factor", 1))
-if photo is not None:
+reshape_factor = st.text_input("Image reshape factor", 1)
+transparent_factor = st.text_input("Transparency factor", 1)
+try:
+	reshape_factor = float(reshape_factor)
+	transparent_factor = float(reshape_factor)
+except:
+	st.write("Values not valid")
+if photo is not None and type(reshape_factor)==float and type(transparent_factor)==float:
 	st.write(photo)
 	st.write("Image preview")
 
