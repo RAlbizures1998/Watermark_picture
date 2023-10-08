@@ -46,12 +46,14 @@ def add_watermark(image_path, watermark_path, position, reshape_factor, transpar
 
 st.title("UI test")
 photo = st.file_uploader("Insert picture")
+reshape_factor = int(st.text_area("Image reshape factor", 1))
+transparent_factor = int(st.text_area("Transparency factor", 1))
 if photo is not None:
 	st.write(photo)
 	st.write("Image preview")
 
 
-	new_image = add_watermark(photo,watermark_path="/mount/src/watermark_picture/original/watermark_sign.png",position="c",reshape_factor=8,transparent_factor=0.5)
+	new_image = add_watermark(photo,watermark_path="/mount/src/watermark_picture/original/watermark_sign.png",position="c",reshape_factor=reshape_factor,transparent_factor=transparent_factor)
 	st.image(new_image)
 	buf = BytesIO()
 	new_image = new_image.convert('RGB')
