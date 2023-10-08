@@ -57,16 +57,15 @@ if photo is not None and type(reshape_factor)==float and type(transparent_factor
 	st.write(photo)
 	st.write("Image preview")
 
-	if st.button("Generate"):
-		new_image = add_watermark(photo,watermark_path="/mount/src/watermark_picture/original/watermark_sign.png",position="c",reshape_factor=reshape_factor,transparent_factor=transparent_factor)
-		st.image(new_image)
-		buf = BytesIO()
-		new_image = new_image.convert('RGB')
-		new_image.save(buf, format="JPEG")
-		byte_im = buf.getvalue()
-		btn = st.download_button(
+	new_image = add_watermark(photo,watermark_path="/mount/src/watermark_picture/original/watermark_sign.png",position="c",reshape_factor=reshape_factor,transparent_factor=transparent_factor)
+	st.image(new_image)
+	buf = BytesIO()
+	new_image = new_image.convert('RGB')
+	new_image.save(buf, format="JPEG")
+	byte_im = buf.getvalue()
+	btn = st.download_button(
 			label="Download Image",
 			data=byte_im,
 			file_name="imagename.png",
 			mime="image/jpeg",
-		)
+	)
