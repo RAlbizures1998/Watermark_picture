@@ -50,7 +50,7 @@ reshape_factor = st.text_input("Image reshape factor", 1)
 transparent_factor = st.text_input("Transparency factor", 1)
 try:
 	reshape_factor = float(reshape_factor)
-	transparent_factor = float(reshape_factor)
+	transparent_factor = float(transparent_factor)
 except:
 	st.write("Values not valid")
 if photo is not None and type(reshape_factor)==float and type(transparent_factor)==float:
