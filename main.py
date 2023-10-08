@@ -72,7 +72,7 @@ if watermark is not None:
 	with n1:
 		reshape_factor = st.text_input("Image reshape factor",1)
 		transparent_factor = st.select_slider("Transparency factor",np.arange(0.05,1.05,0.05).round(2),1)
-		watermark_rotation = st.select_slider("Angle to rotate 🔄",range(0,380,20))
+		watermark_rotation = st.select_slider("Angle to rotate 🔄",range(0,380,10))
 	with n2:
 		position = st.selectbox("In which position do you want the watermark?",['lower left corner','lower right corner','center','upper left corner','upper right corner'])
 		location = pos[position]
