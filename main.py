@@ -4,11 +4,12 @@ from PIL import Image,ImageColor
 import numpy as np
 
 
-def add_watermark(image_path, watermark_path, position, reshape_factor, transparent_factor,recolor,rotate):
+def add_watermark(image_path, watermark_path, position, reshape_factor, transparent_factor,recolor,rotate,main_image_rotation):
 	# OPEN IMAGE AND WATERMARK
 	layer1 = Image.open(image_path).convert('RGBA')
 	layer2 = Image.open(watermark_path).convert('RGBA')
 	# SET NEW SIZE FOR WATERMARK USING MULTIPLYING FACTOR
+	layer1 = layer1.rotate(float(main_image_rotation),expand=True)
 	layer2_new_size = (int(layer2.size[0]*reshape_factor), int(layer2.size[1]*reshape_factor))
 	layer2_reshape = layer2.resize(layer2_new_size)
 
@@ -72,6 +73,7 @@ if watermark is not None:
 	with n1:
 		reshape_factor = st.text_input("Image reshape factor",1)
 		transparent_factor = st.select_slider("Transparency factor",np.arange(0.05,1.05,0.05).round(2),1)
+		main_image_rotation = st.selectbox("Set a degree rotation for the main image",[0,90,180,270])
 		watermark_rotation = st.select_slider("Angle to rotate 🔄",range(0,380,10))
 	with n2:
 		position = st.selectbox("In which position do you want the watermark?",['lower left corner','lower right corner','center','upper left corner','upper right corner'])
@@ -91,9 +93,7 @@ except:
 	st.warning("Values not valid")
 if photo is not None and watermark is not None:
 	if st.button("Generate"):
-		new_image = add_watermark(photo,watermark_path=watermark,position=location,reshape_factor=reshape_factor,transparent_factor=transparent_factor,
-			recolor=recolor,
-			rotate=int(watermark_rotation))
+		new_image = add_watermark(photo,watermark_path=watermark,position=location,reshape_factor=reshape_factor,transparent_factor=transparent_factor,recolor=recolor,rotate=int(watermark_rotation),main_image_rotation=main_image_rotation)
 		st.image(new_image)
 		buf = BytesIO()
 		new_image = new_image.convert('RGB')
